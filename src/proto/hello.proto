@@ -1,0 +1,22 @@
+syntax = 'proto3';
+
+package sample;
+
+option go_package = "github.com/terashi58/grpc-details-test/proto;proto";
+
+service Hello {
+  rpc Say(SayRequest) returns (SayResponse) {}
+}
+
+message Extension {
+  string message = 1;
+}
+
+message SayRequest {
+  string name = 1;
+  string error_message = 2;
+}
+
+message SayResponse {
+  string greet = 1;
+}
