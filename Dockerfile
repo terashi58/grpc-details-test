@@ -4,7 +4,7 @@ FROM golang:1.17-bullseye
 ARG PROTOC_VERSION=3.20.0
 ARG PROTOC_GEN_GO_VERSION=1.28.0
 ARG PROTOC_GEN_GO_GRPC_VERSION=1.2.0
-ARG EVANS_VERSION=0.10.4
+ARG EVANS_VERSION=0.10.5
 ARG GRPCURL_VERSION=1.8.6
 
 RUN apt-get update \
@@ -19,7 +19,7 @@ RUN apt-get update \
     && go install "google.golang.org/protobuf/cmd/protoc-gen-go@v${PROTOC_GEN_GO_VERSION}" \
     && go install "google.golang.org/grpc/cmd/protoc-gen-go-grpc@v${PROTOC_GEN_GO_GRPC_VERSION}" \
     # install grpc clients
-    && curl -SL https://github.com/ktr0731/evans/releases/download/${EVANS_VERSION}/evans_linux_amd64.tar.gz | \
+    && curl -SL https://github.com/ktr0731/evans/releases/download/v${EVANS_VERSION}/evans_linux_amd64.tar.gz | \
     tar zx -C /usr/local/bin evans --no-same-owner --no-same-permissions \
     && curl -SL https://github.com/fullstorydev/grpcurl/releases/download/v${GRPCURL_VERSION}/grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz | \
     tar zx -C /usr/local/bin grpcurl --no-same-owner --no-same-permissions
