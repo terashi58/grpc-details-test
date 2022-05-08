@@ -1,0 +1,9 @@
+syntax = 'proto3';
+
+package sample;
+
+option go_package = "github.com/terashi58/grpc-details-test/proto;proto";
+
+message ErrorCode {
+  string value = 1;
+}

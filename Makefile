@@ -7,10 +7,13 @@ run:
 	./bin/server
 
 evans:
-	echo '{"name":"gopher","error_message":"fail"}' | evans --path ./src/ --proto proto/sub.proto,proto/hello.proto cli call --enrich Say
+	echo '{"name":"gopher","error_message":"fail"}' | evans --path ./src/ --proto proto/sub.proto,proto/hello.proto,proto/common.proto cli call --enrich Say
 
 evans-reflect:
 	echo '{"name":"gopher","error_message":"fail"}' | evans -r cli call --enrich Say
 
 grpcurl:
-	grpcurl -plaintext -d '{"name":"gopher","error_message":"fail"}' -import-path ./src/ -proto proto/hello.proto localhost:50051 sample.Hello/Say
+	grpcurl -plaintext -d '{"name":"gopher","error_message":"fail"}' -import-path ./src/ -proto proto/hello.proto -proto proto/common.proto localhost:50051 sample.Hello/Say
+
+grpcurl-reflect:
+	grpcurl -plaintext -d '{"name":"gopher","error_message":"fail"}' localhost:50051 sample.Hello/Say

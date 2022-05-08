@@ -29,6 +29,7 @@ func (s *server) Say(ctx context.Context, in *pb.SayRequest) (*pb.SayResponse, e
 		st := status.New(codes.Internal, "error with details")
 		st2, err := st.WithDetails(
 			&pb.Extension{Message: msg, SubData: &pb.SubData{Extended: "sub"}},
+			&pb.ErrorCode{Value: "XXX-123"},
 			ptypes.TimestampNow(),
 		)
 		if err != nil {
